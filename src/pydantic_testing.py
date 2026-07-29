@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from groq import Groq
 from dotenv import load_dotenv
 import os
-from prompts import SYSTEM_PROMPT
+from utils.prompts import SYSTEM_PROMPT
 import json
 
 load_dotenv()
