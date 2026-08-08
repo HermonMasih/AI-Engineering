@@ -33,7 +33,7 @@ response = client.chat.completions.create(
 )
 
 final_response = response.choices[0].message.content
-# print(type(final_response))
+# print(final_response, type(final_response))
 
 data = json.loads(final_response)
 # print(data, type(data))
