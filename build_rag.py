@@ -10,7 +10,7 @@ client = Groq(api_key = os.environ.get('GROQ_API_KEY'))
 
 knowledge_base = {
     'age': 'Hermon age is 30 years',
-    'net worth': "Hermon's networth is 200k"
+    'networth': "Hermon's networth is 200k"
 }
 
 class responsemodel_1(BaseModel):
@@ -73,11 +73,13 @@ def ask_llm(question:str):
         if 'Thank you' in answer:
             break
 
+        content=input('continue the chat. Else say Thank you to end\n') 
+
         messages.append({
                     'role':'user',
-                    'content': input('continue the chat. Else say Thank you to end\n')
+                    'content': content +
+                               f'''context: {know_base(content)}'''
             })
-        context = know_base(question)
 
 question = input('Enter your prompt!!\n')
 ask_llm(question)
