@@ -37,6 +37,7 @@ def retriever(embed_query, embed_documents):
 class responsemodel_1(BaseModel):
     assistant:str
     user: str
+    context: str
 
 response_model = responsemodel_1.model_json_schema()
 
@@ -44,6 +45,7 @@ def format_response(response):
     response = json.loads(response)
     print('user: ', response['user'])
     print('assistant: ', response['assistant'])
+    print('context:', response['context'])
 
 
 def ask_llm(question:str, context: str):
