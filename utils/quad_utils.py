@@ -1,5 +1,5 @@
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams, PointStruct
+from qdrant_client.models import (Distance, VectorParams, PointStruct,PayloadSchemaType)
 import os
 import logging
 
@@ -19,6 +19,12 @@ def create_collections(quad_client, collection_name):
         vectors_config=VectorParams(size=384, distance=Distance.COSINE),
     )
     logging.info(f'collection with name: {collection_name} created successfully.')
+
+    quad_client.create_payload_index(
+    collection_name=collection_name,
+    field_name="category",
+    field_schema=PayloadSchemaType.KEYWORD,
+)
 
 def create_collection_points(
     quad_client, 
